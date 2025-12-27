@@ -116,3 +116,28 @@ exports.getById = async (id) => {
     }
 }
 
+exports.saveFcmToken = async (id, token) => {
+    try {
+        const user = await UserModel.findByIdAndUpdate(id, { fcmToken: token }, { new: true });
+        if (!user) return {
+            success: false,
+            message: 'User not found',
+            status: 404,
+            data: null
+        };
+        return {
+            success: true,
+            message: 'FCM Token saved successfully',
+            status: 200,
+            data: user
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: 'Error saving FCM Token',
+            status: 500,
+            data: error
+        };
+    }
+}

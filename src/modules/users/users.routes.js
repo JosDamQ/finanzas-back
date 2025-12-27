@@ -16,6 +16,7 @@ const schemaLoginUser = require('../../middleware/AjvValidator/User/loginUser');
 router.post('/register', validateBody(schemaRegisterUser), UserController.createUser);
 router.post('/login', validateBody(schemaLoginUser), UserController.login);
 router.get('/profile', verifyToken, UserController.getById);
+router.put('/fcm-token', verifyToken, UserController.saveFcmToken);
 
 
 

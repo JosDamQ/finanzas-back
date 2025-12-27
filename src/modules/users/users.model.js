@@ -39,6 +39,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'src/assets/default-user.jpg'
     },
+    fcmToken: {
+        type: String,
+        default: null
+    },
     dateCreate: {
         type: Date,
         default: Date.now
