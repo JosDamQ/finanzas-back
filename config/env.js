@@ -1,12 +1,14 @@
 'use strict';
 
-import { config } from 'dotenv';
-config();
+require('dotenv').config();
 
 const requiredEnvVars = [
     "URI_MONGO",
     "PORT",
-    "SECRET_KEY"
+    "SECRET_KEY",
+    "FIREBASE_PROJECT_ID",
+    "FIREBASE_CLIENT_EMAIL",
+    "FIREBASE_PRIVATE_KEY"
 ];
 
 requiredEnvVars.forEach((varName) => {
@@ -15,8 +17,13 @@ requiredEnvVars.forEach((varName) => {
     }
 });
 
-export const env = {
+exports.env = {
     uriMongo: process.env.URI_MONGO,
     port: process.env.PORT,
-    secretKey: process.env.SECRET_KEY
+    secretKey: process.env.SECRET_KEY,
+    firebase: {
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined,
+    }
 }
